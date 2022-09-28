@@ -6,7 +6,7 @@ import random
 size_x = 1280
 size_y = 720
 
-cRange = 4 # color range
+cRange = 6 # color range (smaller = less color variation)
 setting = 'scale' #scale or random
 colorStr = "55aaef" #color (without hashtag)
 

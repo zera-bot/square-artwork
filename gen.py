@@ -8,7 +8,7 @@ size_y = 720
 
 cRange = 4 # color range
 setting = 'scale' #scale or random
-colorStr = "f2d116" #color (without hashtag)
+colorStr = "55aaef" #color (without hashtag)
 
 def hexCloseTo(str_,range_):
     hexNumbers = [str_[i:i+2] for i in range(0, len(str_), 2)]

@@ -9,7 +9,7 @@ size_y = 1080
 
 cRange = 6 # color range (smaller = less color variation)
 setting = 'shade' #shade or random
-colorStr = "ff5555" #color (without hashtag)
+colorStr = "001b69" #color (without hashtag)
 mode = "grid" #grid or random
 
 def hexCloseTo(str_,range_):

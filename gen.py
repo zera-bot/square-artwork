@@ -1,5 +1,8 @@
-from tokenize import Hexnumber
-from PIL import Image, ImageDraw, ImageFont
+try:
+    from . import LocalPIL
+    from LocalPIL import Image, ImageDraw, ImageFont
+except:
+    from LocalPIL import Image, ImageDraw, ImageFont
 import math
 import numpy
 import random

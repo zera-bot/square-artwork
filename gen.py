@@ -8,8 +8,9 @@ size_y = 1080
 
 cRange = 6 # color range (smaller = less color variation)
 setting = 'shade' #shade or random
-colorStr = "001b69" #color (without hashtag)
+colorStr = "feae51" #color (without hashtag)
 mode = "grid" #grid or random
+square_length = 120
 
 def hexCloseTo(str_,range_):
     hexNumbers = [str_[i:i+2] for i in range(0, len(str_), 2)]
@@ -53,13 +54,10 @@ img_ = Image.new("RGB",(size_x,size_y))
 img = ImageDraw.Draw(img_)
 
 if mode == "random":
-    for i in range(math.floor(size_x/20)):
-        for j in range(math.floor(size_y/20)):
+    for i in range(math.floor(size_x/20*(120/square_length))):
+        for j in range(math.floor(size_y/20*(120/square_length))):
+            square_center = (i*(square_length/6),j*(square_length/6))
             
-            square_length = 120
-            square_center = (i*20,j*20)
-            
-
             square_vertices = (
                 (square_center[0] + square_length / 2, square_center[1] + square_length / 2),
                 (square_center[0] + square_length / 2, square_center[1] - square_length / 2),
@@ -75,9 +73,8 @@ elif mode == "grid":
     perpSlope = -1/slope
     angle = math.atan(slope)
 
-    for i in range(int(math.floor(size_x/120+25))):
-        for j in range(int(math.floor(size_y/120+25))):
-            square_length = 120
+    for i in range(int(math.floor(size_x/120+25*(120/square_length)))):
+        for j in range(int(math.floor(size_y/120+25*(120/square_length)))):
             d = square_length*i / 1.5 #distance
             #print(d)
             jd = square_length*j
@@ -86,14 +83,8 @@ elif mode == "grid":
             p0 = [0,0]
             p1 = [4,4*slope]
 
-            v_ = [x-y for x,y in list(zip(p0,p1))]
-            vIndex = 0
-
-            u = [0,0]
-            
-            for k in v_:
-                u[vIndex] = float(v_[vIndex]/numpy.abs(k)) * d
-                vIndex+=1
+            v = [x-y for x,y in list(zip(p0,p1))]
+            u = [float(k/numpy.abs(k)) * d for k in v]
 
             #result = u (i hope)
             #print(u)

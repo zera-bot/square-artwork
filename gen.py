@@ -8,7 +8,7 @@ size_y = 1080
 
 cRange = 6 # color range (smaller = less color variation)
 setting = 'shade' #shade or random
-colorStr = "feae51" #color (without hashtag)
+colorStr = "222222" #color (without hashtag)
 mode = "grid" #grid or random
 square_length = 120
 
@@ -73,8 +73,8 @@ elif mode == "grid":
     perpSlope = -1/slope
     angle = math.atan(slope)
 
-    for i in range(int(math.floor(size_x/120+25*(120/square_length)))):
-        for j in range(int(math.floor(size_y/120+25*(120/square_length)))):
+    for i in range(int(math.floor(size_x/120+30*(120/square_length)))):
+        for j in range(int(math.floor(size_y/120+30*(120/square_length)))):
             d = square_length*i / 1.5 #distance
             #print(d)
             jd = square_length*j

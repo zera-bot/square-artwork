@@ -1,3 +1,8 @@
+"""
+MODIFIED VERSION OF https://github.com/zera-bot/square-artwork/blob/main/gen.py
+I HAVE CODED BOTH OF THESE VERSIONS SO I HAVE ALL RIGHT OF CREDIT.
+"""
+
 from PIL import Image, ImageDraw, ImageFont
 import math
 import numpy
@@ -70,32 +75,20 @@ if mode == "random":
             img.polygon(square_vertices, fill=f"#{hexCloseTo(colorStr,cRange)}")
 elif mode == "grid":
     slope = random.random()
-    perpSlope = -1/slope
     angle = math.atan(slope)
-
+    x = square_length*math.cos(angle)
+    y = square_length*math.sin(angle)
+  
     for i in range(int(math.floor(size_x/120+30*(120/square_length)))):
         for j in range(int(math.floor(size_y/120+30*(120/square_length)))):
-            d = square_length*i / 1.5 #distance
-            #print(d)
-            jd = square_length*j
+            #xXNeeded = i
+            #xYNeeded = -j
+            #yXNeeded = -j
+            #yYNeeded = i
 
-            #help: https://math.stackexchange.com/questions/175896/finding-a-point-along-a-line-a-certain-distance-away-from-another-point
-            p0 = [0,0]
-            p1 = [4,4*slope]
-
-            v = [x-y for x,y in list(zip(p0,p1))]
-            u = [float(k/numpy.abs(k)) * d for k in v]
-
-            #result = u (i hope)
-            #print(u)
-
-            #help: https://www.mathworks.com/matlabcentral/answers/484422-how-to-find-the-coordinates-of-a-point-perpendicular-to-a-line-knowing-the-distance
-
-            perpYint = u[1] - perpSlope*u[0]
-            centerX = u[0]+(jd*math.sqrt(1/(1+perpSlope**2)))*-1
-            centerY = u[1]+(perpSlope*jd*math.sqrt(1/(1+perpSlope**2)))*-1
-
-            square_center = (centerX+3000,centerY+1000)
+            centerX=(i*x)-(j*y)
+            centerY=(i*y)+(j*x)
+            square_center = (centerX,centerY-(2000*(size_y/1000)))
 
             square_vertices = (
                 (square_center[0] + square_length / 2, square_center[1] + square_length / 2),
